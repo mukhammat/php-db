@@ -35,13 +35,19 @@ if (!$params['browser']) {
     $browser_info = get_browser(null, true);
     $params['browser'] = $browser_info['browser'];
 }
-$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-$stmt->execute();
-//$stmt->bind_param("sss", $firstname, $lastname, $email);
+
+$sql = "INSERT INTO `users`(`user_id`, `user_name`) VALUES ([value-1],[value-2])";
+
+$stmt = $conn->prepare("INSERT INTO `users`(`user_name`) VALUES ('$params['your_name']')
+    .INSERT INTO `info`(`ip`, `browser`, `email`, `homepage`) VALUES ($params['ip'],$params['browser'],$params['email'],$params['homepage'])
+    .INSERT INTO `guestbook`(`info_id`, `user_id`, `message`) VALUES ('1','1','$params['message']')");
+$stmt->bind_param("sss", $firstname, $lastname, $email);
+
+
+ 
 
 
 
 
-
-print_r($_SERVER);
+print_r($params['your_name']);
 

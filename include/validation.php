@@ -2,7 +2,6 @@
     header('Content-Type: text/html; charset=utf-8');
 
     function is_email($val){
-        
         return true;
     }
 
