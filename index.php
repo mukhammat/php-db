@@ -13,8 +13,9 @@
 
         <form action="add_data.php" method="post">
             <p>Your name:<br /><input type="text" name="your_name" /></p>
-            <p>E-mail:<br /><input type="text" name="email" /></p>
+            <p>E-mail:<br /><input type="email" name="email" /></p>
             <p>HomePage:<br /><input type="text" name="homepage" /></p>
+            <p>Cap:<br /><input type="text" name="captcha" /></p>
             <p>Message:<br />
             <textarea name="message" rows="5" cols="45"> </textarea></p>
             <p><input type="submit" value="Send"></p>
