@@ -34,20 +34,26 @@ $params['ip'] = $_SERVER['REMOTE_ADDR'];
 if (!$params['browser']) { 
     $browser_info = get_browser(null, true);
     $params['browser'] = $browser_info['browser'];
+};
+
+$sql = "INSERT INTO `guestbook`(`user_name`, `email`, `homepage`, `message`, `ip`, `browser`)"
+." VALUES (?,?,?,?,?,?)";
+
+$stmt = $link->prepare($sql);
+
+$stmt = mysqli_prepare($link, $sql);
+
+if($stmt) {
+    mysqli_stmt_bind_param($stmt, "ssssss",
+        $params['your_name'], $params['email'], $params['homepage'],
+        $params['message'], $params['ip'],$params['browser']
+    );
+    mysqli_stmt_execute($stmt);
+    echo 'Right!';
+}
+else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($link);
 }
 
-$sql = "INSERT INTO `users`(`user_id`, `user_name`) VALUES ([value-1],[value-2])";
-
-$stmt = $conn->prepare("INSERT INTO `users`(`user_name`) VALUES ('$params['your_name']')
-    .INSERT INTO `info`(`ip`, `browser`, `email`, `homepage`) VALUES ($params['ip'],$params['browser'],$params['email'],$params['homepage'])
-    .INSERT INTO `guestbook`(`info_id`, `user_id`, `message`) VALUES ('1','1','$params['message']')");
-$stmt->bind_param("sss", $firstname, $lastname, $email);
-
-
- 
-
-
-
-
-print_r($params['your_name']);
-
+mysqli_stmt_close($stmt);
+mysqli_close($link);
