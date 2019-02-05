@@ -47,6 +47,7 @@ $stmt = $link->prepare($sql);
 
 $stmt = mysqli_prepare($link, $sql);
 
+//Check
 if($stmt) {
     mysqli_stmt_bind_param($stmt, "ssssss",
         $params['your_name'], $params['email'], $params['homepage'],
