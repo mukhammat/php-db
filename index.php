@@ -26,8 +26,7 @@
             </div>
             <div class="form-group">
                 <img src="captcha.php" />
-                <input type="text" name="captcha"  class="form-control" required>
-                <div class="g-recaptcha" data-sitekey="6Lc5Oo8UAAAAAOrpFMc9ueFbTR0g-5kLTAw4zL54"></div>
+                <input type="number" name="captcha"  class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Message:</label>
@@ -37,20 +36,25 @@
         </form>
 
         <?php
-            require_once('include/connect_db.php');
+
 
             function show_list () {
+                require_once('include/connect_db.php');
                 $query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
                 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
                 $array = mysqli_fetch_array($result);
-            
+
                 do{
-                    echo "<tr><td>Name:".$array['user_name']."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:".$array['homepage']."</td><br/><td>Message:".$array['message']."</td><br/></tr><br />";
+                    echo "<tr><td>Name:".$array['user_name']
+                        ."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:"
+                        .$array['homepage']."</td><br/><td>Message:".$array['message']
+                        ."</td><br/></tr><br />";
                 }
                 while($array = mysqli_fetch_array($result));
             }
 
-            echo show_list ();
+            echo show_list();
+
         ?>
 
         

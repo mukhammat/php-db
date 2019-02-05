@@ -3,8 +3,7 @@
 
     //Валидация email
     function is_email($val){
-        if (filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
-            echo "E-mail адрес '$email_b' указан верно.\n";
+        if (!filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
             return true;
         } else {
             echo "E-mail адрес '$email_b' указан неверно.\n";
@@ -14,7 +13,7 @@
 
     //Валидация homepage
     function is_url($val){
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
             die('Not a valid URL');
         }
         return true;
@@ -37,5 +36,7 @@
 
     //Валидация message
     function is_message($val){
+        //Удаляем html tags
+        strip_tags($params['message']);
         return true;
     }

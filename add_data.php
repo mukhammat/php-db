@@ -30,8 +30,6 @@ $params['browser'] = $_SERVER['HTTP_USER_AGENT'];
 //Опредиляем ip пользователья
 $params['ip'] = $_SERVER['REMOTE_ADDR'];
 
-//Удаляем html tags
-strip_tags($params['message']);
 
 // Что-то не получилось.. Попробуем по другому
 if (!$params['browser']) { 
