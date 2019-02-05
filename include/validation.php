@@ -21,14 +21,7 @@
     //Валидация captcha
     function is_captcha_right($val){
         session_start();
-        if(isset($val) & !empty($val)){
-            if($val == $_SESSION['code']){
-                return true;
-            }else{
-                echo "Invalid captcha";
-                return false;
-            }
-        }
+        return (!empty($val) && $val == $_SESSION['code']);
     }
 
     //Валидация message
