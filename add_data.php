@@ -3,6 +3,7 @@
 define ('RUN_FROM_PROGRAM', true);
 require_once ('include/validation.php');
 require_once ('include/connect_db.php');
+header('Content-Type: text/html; charset=utf-8');
 
 // Параметры, которые мы ждем из формы
 $keys = array ('your_name', 'email', 'homepage', 'captcha', 'message');
@@ -29,7 +30,6 @@ $params['browser'] = $_SERVER['HTTP_USER_AGENT'];
 
 //Опредиляем ip пользователья
 $params['ip'] = $_SERVER['REMOTE_ADDR'];
-
 
 // Что-то не получилось.. Попробуем по другому
 if (!$params['browser']) { 

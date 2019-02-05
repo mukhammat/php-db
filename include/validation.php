@@ -1,5 +1,4 @@
 <?php
-    header('Content-Type: text/html; charset=utf-8');
 
     //Валидация email
     function is_email($val){
@@ -22,8 +21,8 @@
     //Валидация captcha
     function is_captcha_right($val){
         session_start();
-        if(isset($_POST) & !empty($_POST)){
-            if($_POST['captcha'] == $_SESSION['code']){
+        if(isset($val) & !empty($val)){
+            if($val == $_SESSION['code']){
                 return true;
             }else{
                 echo "Invalid captcha";
@@ -35,6 +34,6 @@
     //Валидация message
     function is_message($val){
         //Удаляем html tags
-        strip_tags($params['message']);
+        strip_tags($val);
         return true;
     }
