@@ -63,4 +63,3 @@ mysqli_stmt_close($stmt);
 mysqli_close($link);
 
 ?>
-<br/><a href="index.php">Close</a>

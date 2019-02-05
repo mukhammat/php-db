@@ -6,7 +6,7 @@ $(document).ready(function () {
             url: "add_data.php",
             data: str,
             success: function (data) {
-				window.location.href = "index.php"; 
+				window.location.href = "index.php";
 				alert(data);
 			}
         });

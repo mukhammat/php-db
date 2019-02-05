@@ -11,7 +11,7 @@
     </head>
     <body>
         <h1>Добавить обращение</h1>
-        <form id="forms">
+        <form id="forms" action="add_data.php" method="post">
             <div class="form-group">
                 <label for="formGroupExampleInput">Your name:</label>
                 <input type="text" name="your_name" class="form-control" placeholder="Brain" required>
