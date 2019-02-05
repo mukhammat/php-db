@@ -1,12 +1,12 @@
-jquery.load(function () {
+jquery.load(() => {
 
-    $('#forms').submit(function () {
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var captcha = $('#captcha').val();
-        var message = $('#message').val();
+    $('#forms').submit(() => {
+        let name = $('#name').val();
+        let email = $('#email').val();
+        let captcha = $('#captcha').val();
+        let message = $('#message').val();
 
-        var errors = $('#errors').val();
+        let errors = $('#errors').val();
         
         if (name.length <= 3) {
             errors.text('Please enter your name!');
@@ -20,7 +20,7 @@ jquery.load(function () {
     });
 
 
-    $('#forms').submit(function () {
+    $('#forms').submit(() => {
         var str = $(this).serialize();
         $.ajax({
             type: "POST",
