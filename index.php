@@ -14,11 +14,11 @@
         <form id="forms" action="add_data.php" method="post">
             <div class="form-group">
                 <label for="formGroupExampleInput">Your name:</label>
-                <input type="text" name="your_name" class="form-control" placeholder="Brain" required>
+                <input id="name" type="text" name="your_name" class="form-control" placeholder="Brain" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">E-mail:</label>
-                <input type="email" name="email" class="form-control" placeholder="brain22@iop.ii" required>
+                <input id="email" type="email" name="email" class="form-control" placeholder="brain22@iop.ii" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">HomePage:</label>
@@ -26,36 +26,15 @@
             </div>
             <div class="form-group">
                 <img src="captcha.php" />
-                <input type="number" name="captcha"  class="form-control" required>
+                <input id="captcha" type="number" name="captcha"  class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Message:</label>
-                <textarea class="form-control" name="message" rows="5" cols="45" required> </textarea>
+                <textarea id="message" class="form-control" name="message" rows="5" cols="45" required> </textarea>
             </div>
+            <div id="errors"></div>
             <input type="submit" value="Send" class="btn btn-primary">
         </form>
-
-        <?php
-
-
-            function show_list ($query) {
-                require_once('include/connect_db.php');
-
-                $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                $array = mysqli_fetch_array($result);
-
-                do{
-                    echo "<tr><td>Name:".$array['user_name']
-                        ."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:"
-                        .$array['homepage']."</td><br/><td>Message:".$array['message']
-                        ."</td><br/></tr><br />";
-                }
-                while($array = mysqli_fetch_array($result));
-            }
-
-            echo show_list("SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` ORDER BY guestbook.date DESC");
-
-        ?>
 
         
 
