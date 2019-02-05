@@ -6,18 +6,17 @@ session_start();
 $captcha_num = rand(1000, 9999);
 $_SESSION['code'] = $captcha_num;
 
-
-$font_size = 30;
-$img_width = 70;
-$img_height = 40;
+$font_size = 21;
+$img_width = 116;
+$img_height = 50;
 
 $image = imagecreate($img_width, $img_height); // create background image with dimensions
 imagecolorallocate($image, 255, 255, 255);
-
 $text_color = imagecolorallocate($image, 0, 0, 0); // set captcha text color
+imagettftext($image, $font_size, rand(-8,8), 10, 40, $text_color, './captcha.ttf', $captcha_num);
 
-imagettftext($image, $font_size, 0, 15, 30, $text_color, 'font.ttf', $captcha_num);
 imagejpeg($image);
+imagedestroy($image);
 
 /*print_r($_POST);
 if(isset($_POST) & !empty($_POST)){
