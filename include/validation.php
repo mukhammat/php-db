@@ -1,18 +1,41 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
 
+    //Валидация email
     function is_email($val){
-        return true;
+        if (filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
+            echo "E-mail адрес '$email_b' указан верно.\n";
+            return true;
+        } else {
+            echo "E-mail адрес '$email_b' указан неверно.\n";
+            return false;
+        }
     }
 
+    //Валидация homepage
     function is_url($val){
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            die('Not a valid URL');
+        }
         return true;
     }
 
+    //Валидация captcha
     function is_captcha_right($val){
-        return true;
+        session_start();
+        print_r($_POST);
+        if(!isset($_POST) & empty($_POST)){
+            if($_POST['captcha'] == $_SESSION['code']){
+                echo "correct captcha";
+                return true;
+            }else{
+                echo "Invalid captcha";
+                return false;
+            }
+        }
     }
 
+    //Валидация message
     function is_message($val){
         return true;
     }
