@@ -39,6 +39,7 @@
 
 
             function show_list () {
+                
                 require_once('include/connect_db.php');
                 $query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
                 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));

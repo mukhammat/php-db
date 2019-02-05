@@ -22,10 +22,8 @@
     //Валидация captcha
     function is_captcha_right($val){
         session_start();
-        print_r($_POST);
         if(isset($_POST) & !empty($_POST)){
             if($_POST['captcha'] == $_SESSION['code']){
-                echo "correct captcha";
                 return true;
             }else{
                 echo "Invalid captcha";
