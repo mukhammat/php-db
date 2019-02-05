@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Title Page</title>
+        <title>Гостевая книга</title>
 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
     </head>
     <body>
-        <p class="h1">Guestbook</p>
+        <h1>Добавить обращение</h1>
         <form action="add_data.php" method="post">
             <div class="form-group">
                 <label for="formGroupExampleInput">Your name:</label>
@@ -38,14 +39,18 @@
         <?php
             require_once('include/connect_db.php');
 
-            $query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
-            $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-            $array = mysqli_fetch_array($result);
+            function show_list () {
+                $query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
+                $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+                $array = mysqli_fetch_array($result);
             
-            do{
-                echo "<tr><td>Name:".$array['user_name']."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:".$array['homepage']."</td><br/><td>Message:".$array['message']."</td><br/></tr><br />";
+                do{
+                    echo "<tr><td>Name:".$array['user_name']."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:".$array['homepage']."</td><br/><td>Message:".$array['message']."</td><br/></tr><br />";
+                }
+                while($array = mysqli_fetch_array($result));
             }
-            while($array = mysqli_fetch_array($result));
+
+            echo show_list ();
         ?>
 
         
