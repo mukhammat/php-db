@@ -59,25 +59,8 @@ else {
 }
 
 mysqli_stmt_close($stmt);
-
-//Вытаскиваем данные из бд
-$query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
-
-$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-
-$array = mysqli_fetch_array($result);
-
-do
-{
-echo "<tr><td>".$array['user_name']."</td><br/><td>".$array['message']."</td><br/><td>".$array['email']."</td><br/><td>".$array['ip']."</td><br/></tr>";
-}
-while($array = mysqli_fetch_array($result));
-
-//Проверка
-if($result)
-{
-    echo "Выполнение запроса прошло успешно";
-}
- 
 // close connect
 mysqli_close($link);
+
+?>
+<br/><a href="index.php">Close</a>

@@ -11,18 +11,18 @@
     </head>
     <body>
         <h1>Добавить обращение</h1>
-        <form action="add_data.php" method="post">
+        <form id="forms">
             <div class="form-group">
                 <label for="formGroupExampleInput">Your name:</label>
-                <input type="text" name="your_name" class="form-control" id="formGroupExampleInput" placeholder="Brain" required>
+                <input type="text" name="your_name" class="form-control" placeholder="Brain" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">E-mail:</label>
-                <input type="email" name="email" class="form-control" id="formGroupExampleInput2" placeholder="brain22@iop.ii" required>
+                <input type="email" name="email" class="form-control" placeholder="brain22@iop.ii" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">HomePage:</label>
-                <input type="text" name="homepage" class="form-control" id="formGroupExampleInput2" value="http://">
+                <input type="text" name="homepage" class="form-control" value="http://">
             </div>
             <div class="form-group">
                 <img src="captcha.php" />
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Message:</label>
-                <textarea class="form-control" id="formGroupExampleInput2" name="message" rows="5" cols="45" required> </textarea>
+                <textarea class="form-control" name="message" rows="5" cols="45" required> </textarea>
             </div>
             <input type="submit" value="Send" class="btn btn-primary">
         </form>
@@ -38,10 +38,9 @@
         <?php
 
 
-            function show_list () {
-                
+            function show_list ($query) {
                 require_once('include/connect_db.php');
-                $query ="SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` WHERE 1";
+
                 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
                 $array = mysqli_fetch_array($result);
 
@@ -54,14 +53,14 @@
                 while($array = mysqli_fetch_array($result));
             }
 
-            echo show_list();
+            echo show_list("SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` ORDER BY guestbook.date DESC");
 
         ?>
 
         
 
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/model.js"></script>
     </body>
 </html>
