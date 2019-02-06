@@ -2,19 +2,12 @@
 
     //Валидация email
     function is_email($val){
-        if (!filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
-            return json_encode (array ('success' => true));
-        } else {
-            return json_encode (array ('success' => false));
-        }
+        return filter_var($val, FILTER_VALIDATE_EMAIL);
     }
 
     //Валидация homepage
     function is_url($val){
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
-            die('Not a valid URL');
-        }
-        return json_encode (array ('success' => true));
+        return filter_var($url, FILTER_VALIDATE_URL);
     }
 
     //Валидация captcha
