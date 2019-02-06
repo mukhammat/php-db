@@ -1,14 +1,14 @@
-$(document).ready(() => {
+$("body").load(() => {
 
 
     $('#forms').submit(() => {
         var str = $(this).serialize();
         $.ajax({
             type: "POST",
-            url: "contact_backend.php",
+            url: "add_data.php",
             data: str,
+            dataType: "json",
             success: function (data) {
-				window.location.href = "index.php"; 
 				alert(data);
 			}
         });

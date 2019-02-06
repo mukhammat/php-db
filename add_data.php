@@ -31,6 +31,7 @@ $params['browser'] = $_SERVER['HTTP_USER_AGENT'];
 //Опредиляем ip пользователья
 $params['ip'] = $_SERVER['REMOTE_ADDR'];
 
+
 // Что-то не получилось.. Попробуем по другому
 if (!$params['browser']) { 
     $browser_info = get_browser(null, true);
@@ -52,10 +53,10 @@ if($stmt) {
         $params['message'], $params['ip'],$params['browser']
     );
     mysqli_stmt_execute($stmt);
-    echo 'Right!';
+    echo json_encode (array ('success' => true));
 }
 else {
-    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($link);
+    echo json_encode (array ('success' => false));
 }
 
 mysqli_stmt_close($stmt);

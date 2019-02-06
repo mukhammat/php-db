@@ -3,10 +3,9 @@
     //Валидация email
     function is_email($val){
         if (!filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
-            return true;
+            return json_encode (array ('success' => true));
         } else {
-            echo "E-mail адрес '$email_b' указан неверно.\n";
-            return false;
+            return json_encode (array ('success' => false));
         }
     }
 
@@ -15,7 +14,7 @@
         if (filter_var($url, FILTER_VALIDATE_URL)) {
             die('Not a valid URL');
         }
-        return true;
+        return json_encode (array ('success' => true));
     }
 
     //Валидация captcha
@@ -26,7 +25,5 @@
 
     //Валидация message
     function is_message($val){
-        //Удаляем html tags
-        strip_tags($val);
-        return true;
+        return json_encode (array ('success' => true));
     }
