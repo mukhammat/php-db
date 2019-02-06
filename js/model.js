@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
 
-    $('#form').submit(() => {
+    $('#form').submit(function() {
         var str = $(this).serialize();
-        $.ajax({
-            type: "POST",
+        $.post({
             url: "add_data.php",
             data: str,
             dataType: "json",
@@ -18,6 +17,7 @@ $(document).ready(function() {
                     url: "get_list.php",
                     dataType: "json",
                     success: function (list) {
+                        console.log (list);
                         if (!list.success) {
                             alert ('Ошибка при обращении к БД');
                             return;

@@ -17,10 +17,10 @@ foreach ($keys as $key) {
 
     // Валидация
     switch ($key) {
-            case 'email': if (!is_email($val)) die (json_encode(array ('success' => false, 'message' => "E-mail указан не верно")); break;
-            case 'homepage': if (!is_url($val)) die (json_encode(array ('success' => false, 'message' => 'Homepage указан не верно')); break;
-            case 'captcha': if (!is_captcha_right($val)) die (json_encode(array ('success' => false, 'message' => 'Капча указана не верно')); break;
-            case 'message': if (!is_message($val)) die (json_encode(array ('success' => false, 'message' => 'Сообщение содержит некорректные данные')); break;
+            case 'email': if (!is_email($val)) die (json_encode(array ('success' => false, 'message' => "E-mail указан не верно"))); break;
+            case 'homepage': if (!is_url($val)) die (json_encode(array ('success' => false, 'message' => 'Homepage указан не верно'))); break;
+            case 'captcha': if (!is_captcha_right($val)) die (json_encode(array ('success' => false, 'message' => 'Капча указана не верно'))); break;
+            case 'message': if (!is_message($val)) die (json_encode(array ('success' => false, 'message' => 'Сообщение содержит некорректные данные'))); break;
       }
       $params[$key] = $val;
 }
@@ -60,5 +60,3 @@ mysqli_stmt_close($stmt);
 // close connect
 mysqli_close($link);
 echo json_encode (array ('success' => true));
-
-?>

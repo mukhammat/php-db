@@ -7,7 +7,7 @@
 
     //Валидация homepage
     function is_url($val){
-        return filter_var($url, FILTER_VALIDATE_URL);
+        return filter_var($val, FILTER_VALIDATE_URL);
     }
 
     //Валидация captcha

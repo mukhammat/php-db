@@ -4,11 +4,11 @@ require_once('include/connect_db.php');
 
 $query = "SELECT `id`, `user_name`, `email`, `homepage`, `message`, `date`, `ip`, `browser` FROM `guestbook` ORDER BY guestbook.date DESC";
 $result = mysqli_query($link, $query) or die(json_encode(array (
-	'success': false, 'message': "Ошибка " . mysqli_error($link)
+	'success' => false, 'message' => "Ошибка " . mysqli_error($link)
 )));
 
 $msg = '';
-while($array = mysqli_fetch_array($result)) {
+while ($array = mysqli_fetch_array($result)) {
 
 	$msg .= <<<HTML
 
@@ -24,10 +24,9 @@ while($array = mysqli_fetch_array($result)) {
 		<td>{$array['homepage']}</td>
 		<td>{$array['message']}</td>
 	</tr>
-	HTML;
+HTML;
 }
 
 echo json_encode(array (
-	'success': true, 'message': msg
+	'success' => true, 'message' => $msg
 ));
-
