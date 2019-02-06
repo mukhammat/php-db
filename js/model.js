@@ -1,6 +1,20 @@
 $(document).ready(function() {
 
 
+    function refresh_list () {
+        $.ajax({
+            url: "get_list.php",
+            dataType: "json",
+            success: function (list) {
+                if (!list.success) {
+                    alert (list.message);
+                    return;
+                }
+                $("#list").html (list.message);
+            }
+        })
+    }
+
     $('#form').submit(function() {
         var str = $(this).serialize();
         $.post({
@@ -8,26 +22,16 @@ $(document).ready(function() {
             data: str,
             dataType: "json",
             success: function (data) {
-				if (!data.success) {
+        if (!data.success) {
                     alert (data.message);
                     return
                 }
 
-                $.ajax({
-                    url: "get_list.php",
-                    dataType: "json",
-                    success: function (list) {
-                        console.log (list);
-                        if (!list.success) {
-                            alert ('Ошибка при обращении к БД');
-                            return;
-                        }
-                        $("#list").html (list.message);
-                    }
-                })
-			}
+                refresh_list ();
+      }
         })
-		return false;
+    return false;
     })
 
+    refresh_list ();
 })
