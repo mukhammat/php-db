@@ -1,7 +1,7 @@
-$("body").load(() => {
+$(document).ready(function() {
 
 
-    $('#forms').submit(() => {
+    $('#form').submit(() => {
         var str = $(this).serialize();
         $.ajax({
             type: "POST",
@@ -9,9 +9,25 @@ $("body").load(() => {
             data: str,
             dataType: "json",
             success: function (data) {
-				alert(data);
+				if (!data.success) {
+                    alert (data.message);
+                    return
+                }
+
+                $.ajax({
+                    url: "get_list.php",
+                    dataType: "json",
+                    success: function (list) {
+                        if (!list.success) {
+                            alert ('Ошибка при обращении к БД');
+                            return;
+                        }
+                        $("#list").html (list.message);
+                    }
+                })
 			}
-        });
+        })
 		return false;
-    });
-});	
+    })
+
+})

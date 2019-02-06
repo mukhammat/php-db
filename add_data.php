@@ -1,8 +1,8 @@
 <?php
 
-define ('RUN_FROM_PROGRAM', true);
 require_once ('include/validation.php');
 require_once ('include/connect_db.php');
+
 header('Content-Type: text/html; charset=utf-8');
 
 // Параметры, которые мы ждем из формы
@@ -17,10 +17,10 @@ foreach ($keys as $key) {
 
     // Валидация
     switch ($key) {
-            case 'email': if (!is_email($val)) die ("E-mail указан не верно"); break;
-            case 'homepage': if (!is_url($val)) die ('Homepage указан не верно'); break;
-            case 'captcha': if (!is_captcha_right($val)) die ('Капча указана не верно'); break;
-            case 'message': if (!is_message($val)) die ('Сообщение содержит некорректные данные'); break;
+            case 'email': if (!is_email($val)) die (json_encode(array ('success' => false, 'message' => "E-mail указан не верно")); break;
+            case 'homepage': if (!is_url($val)) die (json_encode(array ('success' => false, 'message' => 'Homepage указан не верно')); break;
+            case 'captcha': if (!is_captcha_right($val)) die (json_encode(array ('success' => false, 'message' => 'Капча указана не верно')); break;
+            case 'message': if (!is_message($val)) die (json_encode(array ('success' => false, 'message' => 'Сообщение содержит некорректные данные')); break;
       }
       $params[$key] = $val;
 }
@@ -30,7 +30,6 @@ $params['browser'] = $_SERVER['HTTP_USER_AGENT'];
 
 //Опредиляем ip пользователья
 $params['ip'] = $_SERVER['REMOTE_ADDR'];
-
 
 // Что-то не получилось.. Попробуем по другому
 if (!$params['browser']) { 
@@ -43,7 +42,6 @@ $sql = "INSERT INTO `guestbook`(`user_name`, `email`, `homepage`, `message`, `ip
 ." VALUES (?,?,?,?,?,?)";
 
 $stmt = $link->prepare($sql);
-
 $stmt = mysqli_prepare($link, $sql);
 
 //Check
@@ -53,14 +51,14 @@ if($stmt) {
         $params['message'], $params['ip'],$params['browser']
     );
     mysqli_stmt_execute($stmt);
-    echo json_encode (array ('success' => true));
 }
 else {
-    echo json_encode (array ('success' => false));
+    die (json_encode (array ('success' => false, 'message' => 'Ошибка с базой данных')));
 }
 
 mysqli_stmt_close($stmt);
 // close connect
 mysqli_close($link);
+echo json_encode (array ('success' => true));
 
 ?>

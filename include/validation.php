@@ -25,5 +25,5 @@
 
     //Валидация message
     function is_message($val){
-        return json_encode (array ('success' => true));
+        return  strip_tags($val) == $val;
     }

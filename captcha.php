@@ -18,11 +18,3 @@ imagettftext($image, $font_size, rand(-8,8), 10, 40, $text_color, './captcha.ttf
 imagejpeg($image);
 imagedestroy($image);
 
-/*print_r($_POST);
-if(isset($_POST) & !empty($_POST)){
-    if($_POST['captcha'] == $_SESSION['code']){
-        echo "correct captcha";
-    }else{
-        echo "Invalid captcha";
-    }
-}*/
