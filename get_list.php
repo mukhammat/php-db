@@ -7,10 +7,8 @@ function show_list () {
     $array = mysqli_fetch_array($result);
 
     do{
-        echo "<tr><td>Name:".$array['user_name']
-            ."</td><br/><td>Email:".$array['email']."</td><br/><td>Homepage:"
-            .$array['homepage']."</td><br/><td>Message:".$array['message']
-            ."</td><br/></tr><br />";
+        echo "<tr><th>User Name</th><th>Email</th><th>Homepage</th><th>Message</th></tr>".
+                "<tr><td>".$array['user_name']."</td><td>".$array['email']."</td><td>".$array['homepage']."</td><td>".$array['message']."</td></tr>";
     }
     while($array = mysqli_fetch_array($result));
 }

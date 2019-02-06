@@ -1,3 +1,14 @@
 body {
     padding: 15px;
 }
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+th,
+tr {
+    background-color: #333;
+    color: #fff;
+}
