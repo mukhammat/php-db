@@ -6,7 +6,7 @@ require_once ('include/connect_db.php');
 header('Content-Type: text/html; charset=utf-8');
 
 // Параметры, которые мы ждем из формы
-$keys = array ('your_name', 'email', 'homepage', 'captcha', 'message');
+$keys = array ('user_name', 'email', 'homepage', 'captcha', 'message');
 // Готовим очищенные параметры
 $params = array ();
 foreach ($keys as $key) {
@@ -47,7 +47,7 @@ $stmt = mysqli_prepare($link, $sql);
 //Check
 if($stmt) {
     mysqli_stmt_bind_param($stmt, "ssssss",
-        $params['your_name'], $params['email'], $params['homepage'],
+        $params['user_name'], $params['email'], $params['homepage'],
         $params['message'], $params['ip'],$params['browser']
     );
     mysqli_stmt_execute($stmt);
@@ -59,4 +59,4 @@ else {
 mysqli_stmt_close($stmt);
 // close connect
 mysqli_close($link);
-echo json_encode (array ('success' => true));
+echo json_encode (array ('success' => true, 'sql' => $sql, 'params' => $params));

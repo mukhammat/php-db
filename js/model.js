@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-
     function refresh_list () {
         $.ajax({
-            url: "get_list.php",
+            url: "get_list.php?_=" + new Date().getTime(),
             dataType: "json",
             success: function (list) {
                 if (!list.success) {

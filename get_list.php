@@ -7,17 +7,20 @@ $result = mysqli_query($link, $query) or die(json_encode(array (
 	'success' => false, 'message' => "Ошибка " . mysqli_error($link)
 )));
 
-$msg = '';
-while ($array = mysqli_fetch_array($result)) {
-
-	$msg .= <<<HTML
-
+$msg = <<<HTML
+	<table class="table table-dark">
+	<thead>
 	<tr>
 		<th>User Name</th>
 		<th>Email</th>
 		<th>Homepage</th>
 		<th>Message</th>
 	</tr>
+	</thead>
+	<tbody>
+HTML;
+while ($array = mysqli_fetch_array($result)) {
+	$msg .= <<<HTML
 	<tr>
 		<td>{$array['user_name']}</td>
 		<td>{$array['email']}</td>
@@ -26,6 +29,10 @@ while ($array = mysqli_fetch_array($result)) {
 	</tr>
 HTML;
 }
+$msg .= <<<HTML
+	</tbody>
+	</table>
+HTML;
 
 echo json_encode(array (
 	'success' => true, 'message' => $msg
